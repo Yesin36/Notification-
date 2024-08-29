@@ -6,8 +6,10 @@ import android.app.NotificationManager
 import android.os.Build
 
 class app: Application() {
-    final  private val CHANNEL_ID1 = "CHANNEL_ID1"
-    final  private val CHANNEL_ID2 = "CHANNEL_ID2"
+    companion object {
+        final public val CHANNEL_ID1 = "CHANNEL_ID1"
+        final public val CHANNEL_ID2 = "CHANNEL_ID2"
+    }
 
     override fun onCreate() {
         super.onCreate()
