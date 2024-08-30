@@ -1,6 +1,9 @@
 package com.example.notification
 
 import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,11 +30,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.high.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            // Create the notification
             val notification = NotificationCompat.Builder(this, CHANNEL_ID1)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(binding.title.text.toString())
                 .setContentText(binding.content.text.toString())
-//                .setPriority(NotificationCompat.PRIORITY_HIGH)  // for low sdk device but need same priority
+
+                .setPriority(NotificationCompat.PRIORITY_HIGH)  // for low sdk device but need same priority
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setColor(Color.MAGENTA)
+                .setContentIntent(pendingIntent)
+                .addAction(R.drawable.ic_android_black_24dp,"back",pendingIntent)
+                .addAction(R.drawable.ic_android_black_24dp,"play",null)
+                .addAction(R.drawable.ic_android_black_24dp,"next",null)
+                .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
                 .build()  // Build the notification here
 
             val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -43,7 +58,11 @@ class MainActivity : AppCompatActivity() {
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(binding.title.text.toString())
                 .setContentText(binding.content.text.toString())
-//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)  // for low sdk device but need same priority
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)  // for low sdk device but need same priority
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setColor(Color.MAGENTA)
+                .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
                 .build()  // Build the notification here
 
             val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
