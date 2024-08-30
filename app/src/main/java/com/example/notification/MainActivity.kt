@@ -30,9 +30,26 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.high.setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
+//            val intent = Intent(this, MainActivity2::class.java)
+//            intent.putExtra("data_rec",binding.content.text.toString())
+//            val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+           // =======================================================
+                // this is for broadcast receiver
+
+//            val intent = Intent(this, BroadCast::class.java)
+//            intent.putExtra("data_rec",binding.content.text.toString())
+//            val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+ // =======================================================
+            // this is for service
+
+            val intent = Intent(this, MyIntentService::class.java)
             intent.putExtra("data_rec",binding.content.text.toString())
-            val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            val pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+
+
             // Create the notification
             val notification = NotificationCompat.Builder(this, CHANNEL_ID1)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)

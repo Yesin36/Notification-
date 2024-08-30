@@ -15,6 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Notification"
         tools:targetApi="31">
+        <service
+            android:name=".MyIntentService"
+            android:exported="false"></service>
+
         <activity
             android:name=".MainActivity2"
             android:exported="false" />
@@ -27,6 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".BroadCast" />
     </application>
 
 </manifest>
