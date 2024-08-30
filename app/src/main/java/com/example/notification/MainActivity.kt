@@ -30,14 +30,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.high.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            val intent = Intent(this, MainActivity2::class.java)
+            intent.putExtra("data_rec",binding.content.text.toString())
+            val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
             // Create the notification
             val notification = NotificationCompat.Builder(this, CHANNEL_ID1)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(binding.title.text.toString())
                 .setContentText(binding.content.text.toString())
-
                 .setPriority(NotificationCompat.PRIORITY_HIGH)  // for low sdk device but need same priority
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .setColor(Color.MAGENTA)
